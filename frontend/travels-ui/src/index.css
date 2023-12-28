@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Island+Moments&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply box-border m-0 p-0;
+}
+
+@layer base {
+  section {
+    @apply px-0 md:py-[50px] py-[30px];
+  }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-headingColor;
+}
+a {
+  @apply no-underline text-[unset];
+}
+ul {
+  list-style: none;
+}
+
+.btn__customer {
+  @apply inline-block py-3 px-2 text-[1rem] font-normal leading-6 text-[#212529] text-center no-underline align-middle cursor-pointer
+   select-none border border-t-transparent rounded-[0.375rem] bg-transparent border-solid hover:shadow-3xl hover:brightness-105 transition-all duration-[0.2s] ease-linear;
+}
+.primary__btn {
+  @apply px-6 py-[0.4rem] rounded-[50px] font-medium text-white border-none bg-secondaryColor;
+}
+.primary__btn a {
+  @apply text-[1.1rem] no-underline text-white;
+}
+.secondary__btn {
+  @apply text-[#0b2727] font-medium border-none bg-transparent;
+}
+.secondary__btn a {
+  @apply no-underline text-[1.1rem] text-headingColor;
+}
+.section__subtitle {
+  @apply w-max font-medium text-[1.6rem] md:text-[2rem] text-headingColor px-3 py-0  rounded-[50px] bg-secondaryColor font-subtitleFontName;
+}
