@@ -7,6 +7,7 @@
   left: 0;
   box-shadow: 3px 3px 8px -3px #ddd;
   z-index: 999;
+  border: none;
 }
 .hero__img-box img:hover,
 .hero__img-box video:hover {

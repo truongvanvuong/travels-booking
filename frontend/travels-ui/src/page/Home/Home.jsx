@@ -16,11 +16,11 @@ import Newsletter from "../../shared/Newsletter";
 const Home = () => {
   return (
     <main>
-      <section>
+      <section className="pt-[10px]">
         <Container>
           <Row>
             <Col lg="6">
-              <div className="pt-6 lg:pt-12">
+              <div className="!pt-4 lg:pt-12">
                 <div className="flex items-center">
                   <Subtitle subtitle={"Know Before You Go"} />
                   <img

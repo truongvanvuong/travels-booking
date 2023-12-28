@@ -56,7 +56,7 @@ const TourCard = ({ tour }) => {
                 /per person
               </span>
             </h5>
-            <button className="bg-secondaryColor flex items-center justify-center cursor-pointer px-[0.8rem] py-1 rounded-lg hover:opacity-80 transition-opacity">
+            <button className="bg-secondaryColor flex items-center justify-center cursor-pointer px-3 py-2 rounded-lg hover:opacity-80 transition-opacity">
               <Link
                 className="text-white text-[0.7rem] font-medium lg:text-[0.9rem]"
                 to={`/tour/${id}`}

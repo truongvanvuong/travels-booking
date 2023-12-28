@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
   };
   return (
-    <section>
+    <section className="pt-4">
       <Container>
         <Row>
           <Col lg="10" className="m-auto">

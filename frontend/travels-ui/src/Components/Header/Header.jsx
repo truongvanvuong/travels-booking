@@ -49,7 +49,7 @@ const Header = () => {
   };
   return (
     <header
-      className="w-full h-[80px] flex items-center justify-center transition-all"
+      className="w-full h-[80px] flex items-center justify-center transition-all border-b"
       ref={headerRef}
     >
       <Container>
@@ -61,11 +61,13 @@ const Header = () => {
             {/* ________Logo________  */}
             <div className="">
               <figure className="w-full">
-                <img
-                  className="hidden md:w-[30%] md:block"
-                  src={logo}
-                  alt="Logo"
-                />
+                <Link>
+                  <img
+                    className="hidden md:w-[30%] md:block"
+                    src={logo}
+                    alt="Logo"
+                  />
+                </Link>
               </figure>
             </div>
             {/* ________menu start________  */}
