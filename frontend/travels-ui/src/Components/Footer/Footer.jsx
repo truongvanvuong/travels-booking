@@ -73,7 +73,7 @@ const Footer = () => {
         <Row>
           <Col lg="3" className="mb-3 md:!mb-0">
             <div>
-              <img src={logo} alt="Logo" className=" w-[35%] lg:w-[50%] mb-4" />
+              <img src={logo} alt="Logo" className=" w-[45%] lg:w-[50%] mb-4" />
               <p className="text-textColor">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Accusamus voluptas eos ex velit nesciunt.

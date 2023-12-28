@@ -10,7 +10,7 @@ const AuthForm = ({ children, img, title, linkTo, linktext, paraText }) => {
       <div className="login__img md:w-[50%] lg:w-[60%] text-center hidden md:flex items-center justify-center">
         <img className="w-[80%] object-cover" src={img} alt="Image Login" />
       </div>
-      <div className="login__form p-[50px] bg-secondaryColor relative w-full md:rounded-r-xl md:rounded-l-none rounded-xl md:w-[50%] lg:w-[40%]">
+      <div className="login__form px-8 py-10 lg:px-12 lg:py-12 bg-secondaryColor relative w-full md:rounded-r-xl md:rounded-l-none rounded-xl md:w-[50%] lg:w-[40%]">
         <div className="user w-[80px] h-[80px] absolute -top-[9%] left-[50%] -translate-x-2/4 translate-y-[-9%]">
           <img
             className="w-full shadow rounded-full"
@@ -18,7 +18,7 @@ const AuthForm = ({ children, img, title, linkTo, linktext, paraText }) => {
             alt="Icon"
           />
         </div>
-        <h2 className="text-white text-center mb-8 text-[1.4rem] font-medium md:text-[1.6rem] capitalize">
+        <h2 className="text-white text-center my-8 text-[1.4rem] font-medium md:text-[1.6rem] capitalize">
           {title}
         </h2>
         {children}
