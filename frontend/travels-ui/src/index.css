@@ -10,7 +10,7 @@
 
 @layer base {
   section {
-    @apply px-0 lg:!pt-[50px] lg:pb-[50px];
+    @apply px-0 pt-[50px] pb-[50px];
   }
 }
 h1,

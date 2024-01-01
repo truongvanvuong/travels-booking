@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
   };
   return (
-    <section className="pt-4 lg:pt-0">
+    <section className="pt-4 lg:pt-[50px]">
       <Container>
         <Row>
           <Col lg="10" className="m-auto">

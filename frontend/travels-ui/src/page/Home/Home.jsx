@@ -16,7 +16,7 @@ import Newsletter from "../../shared/Newsletter";
 const Home = () => {
   return (
     <main>
-      <section className="pt-[10px]">
+      <section className="pt-[10px] lg:pt-[50px]">
         <Container>
           <Row>
             <Col lg="6">
@@ -57,6 +57,7 @@ const Home = () => {
                   autoPlay
                   alt="Video"
                   controls
+                  loop
                   muted
                 >
                   <source src={heroVideo} type="video/mp4"></source>

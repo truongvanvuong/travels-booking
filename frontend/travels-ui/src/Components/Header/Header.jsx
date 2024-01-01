@@ -42,7 +42,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleStickyHeader);
     };
-  });
+  }, []);
 
   const toggleMenu = () => {
     menuRef.current.classList.toggle("show__menu");
@@ -61,7 +61,7 @@ const Header = () => {
             {/* ________Logo________  */}
             <div className="">
               <figure className="w-full">
-                <Link>
+                <Link to="/">
                   <img
                     className="hidden md:w-[30%] md:block"
                     src={logo}
