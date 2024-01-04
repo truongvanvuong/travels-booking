@@ -76,3 +76,8 @@
 .slick-prev {
   display: none !important;
 }
+/* tippy css */
+
+.tippy-content {
+  @apply lg:!py-[8px] lg:!px-[12px] !important;
+}

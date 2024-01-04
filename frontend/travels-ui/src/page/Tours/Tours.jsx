@@ -9,6 +9,9 @@ const Tours = () => {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     const pages = Math.ceil(5 / 4);
     setPageCount(pages);
   }, [page]);

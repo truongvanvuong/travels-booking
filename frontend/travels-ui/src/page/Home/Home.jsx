@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "reactstrap";
-
+import { useEffect, useState } from "react";
 import heroImg1 from "../../assets/images/hero-img01.jpg";
 import heroImg2 from "../../assets/images/hero-img02.jpg";
 import heroVideo from "../../assets/images/hero-video.mp4";
@@ -14,6 +14,9 @@ import Testimonial from "../../Components/Testimonial";
 import Newsletter from "../../shared/Newsletter";
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <main>
       <section className="pt-[10px] lg:pt-[50px]">

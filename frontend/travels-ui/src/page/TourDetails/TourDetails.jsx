@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Form, ListGroup } from "reactstrap";
 
@@ -47,6 +47,9 @@ const TourDetails = () => {
     const reviewText = reviewMsgRef.current.value;
     alert(`${reviewText} ${rating}`);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section>
       <Container>

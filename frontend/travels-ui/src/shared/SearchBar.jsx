@@ -1,24 +1,63 @@
-import { useRef } from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import Tippy from "@tippyjs/react";
 import { BiMap, BiGroup } from "react-icons/bi";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
 
 import { Col, Form, FormGroup } from "reactstrap";
 import { RiMapPinTimeLine, RiSearchLine } from "react-icons/ri";
 
-const SearchBar = ({ props }) => {
-  const locationRef = useRef("");
-  const distanceRef = useRef(0);
-  const maxGroupSizeRef = useRef(0);
+const SearchBar = () => {
+  const [searchValue, setSearchValue] = useState({
+    location: "",
+    distance: 0,
+    maxGroupSize: 0,
+  });
+  const [visibleLocation, setVisibleLocation] = useState(false);
+  const [visibleDistance, setVisibleDistance] = useState(false);
+  const [visiblePeople, setVisiblePeople] = useState(false);
+  const searchHandler = (e) => {
+    setSearchValue((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+    const { location, distance, maxGroupSize } = searchValue;
 
-  const searchHandler = () => {
-    const loctaion = locationRef.current.value;
-    const distance = distanceRef.current.value;
-    const maxGroupSize = maxGroupSizeRef.current.value;
+    setVisibleLocation(location === "");
+    setVisibleDistance(distance === 0 || distance === "");
+    setVisiblePeople(maxGroupSize === 0 || maxGroupSize === "");
+  };
+  const handleBlur = (fieldName) => {
+    const { location, distance, maxGroupSize } = searchValue;
 
-    if (loctaion === "" || distance === "" || maxGroupSize === "") {
-      alert("Null");
+    switch (fieldName) {
+      case "location":
+        setVisibleLocation(location === "");
+        break;
+      case "distance":
+        setVisibleDistance(distance === "" || distance === 0);
+        break;
+      case "maxGroupSize":
+        setVisiblePeople(maxGroupSize === 0 || maxGroupSize === 0);
+        break;
+      default:
+        break;
     }
   };
+  const hideTippy = () => {
+    setVisibleLocation(false);
+    setVisibleDistance(false);
+    setVisiblePeople(false);
+  };
+  useEffect(() => {
+    if (visibleLocation || visibleDistance || visiblePeople) {
+      const timer = setTimeout(() => {
+        hideTippy();
+      }, 10000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [visibleLocation]);
   return (
     <Col lg="12">
       <div className="py-2 px-4 rounded-[50px] shadow-2xl lg:w-max mt-[50px] w-full">
@@ -29,27 +68,52 @@ const SearchBar = ({ props }) => {
             </span>
             <div className="w-full lg:w-max">
               <h6 className="mb-0">Location</h6>
-              <input
-                ref={locationRef}
-                type="text"
-                placeholder="Where are you going?"
-                className="text-sm text-headingColor border-none font-[500] focus:outline-none w-full"
-              />
+              <Tippy
+                onHidden={() => {
+                  hideTippy();
+                }}
+                content="Enter where you want to go"
+                visible={visibleLocation}
+                theme="light"
+                className="mb-[16px] lg:!mb-[40px]"
+              >
+                <input
+                  onBlur={() => handleBlur("location")}
+                  onChange={searchHandler}
+                  type="text"
+                  name="location"
+                  placeholder="Where are you going?"
+                  className="text-sm text-headingColor border-none font-[500] focus:outline-none w-full"
+                />
+              </Tippy>
             </div>
           </FormGroup>
+
           <FormGroup className="from__group px-2 py-2 flex gap-3 items-center lg:border-r-2 border-[#ddd] border-b border-solid md:border-b-0">
             <span className="text-[#ee6e6e]">
               <RiMapPinTimeLine className="w-5 h-5" />
             </span>
             <div className="w-full lg:w-max">
               <h6 className="mb-0">Distance</h6>
-              <input
-                ref={distanceRef}
-                type="number"
-                min="0"
-                placeholder="Distance km"
-                className="text-sm text-headingColor border-none font-[500] border-r-2 focus:outline-none w-full"
-              />
+              <Tippy
+                onHidden={() => {
+                  hideTippy();
+                }}
+                content="Enter distance"
+                visible={visibleDistance}
+                theme="light"
+                className="mb-[16px] lg:!mb-[40px]"
+              >
+                <input
+                  onBlur={() => handleBlur("distance")}
+                  onChange={searchHandler}
+                  type="number"
+                  name="distance"
+                  min="0"
+                  placeholder="Distance km"
+                  className="text-sm text-headingColor border-none font-[500] border-r-2 focus:outline-none w-full"
+                />
+              </Tippy>
             </div>
           </FormGroup>
           <FormGroup className="from__group px-2 py-2 flex gap-3 items-center border-b border-solid border-[#ddd] md:border-none">
@@ -58,31 +122,47 @@ const SearchBar = ({ props }) => {
             </span>
             <div className="w-full lg:w-max">
               <h6 className="mb-0">Max People</h6>
-              <input
-                ref={maxGroupSizeRef}
-                min="0"
-                type="number"
-                placeholder="0"
-                className="text-sm text-headingColor border-none font-[500] border-r-2 focus:outline-none w-full"
-              />
+              <Tippy
+                content="Enter max people"
+                visible={visiblePeople}
+                theme="light"
+                className="mb-[16px] lg:!mb-[40px]"
+              >
+                <input
+                  onHidden={() => {
+                    hideTippy();
+                  }}
+                  onBlur={() => handleBlur("maxGroupSize")}
+                  onChange={searchHandler}
+                  min="0"
+                  name="maxGroupSize"
+                  type="number"
+                  placeholder="0"
+                  className="text-sm text-headingColor border-none font-[500] border-r-2 focus:outline-none w-full"
+                />
+              </Tippy>
             </div>
           </FormGroup>
-          <div
-            className="flex items-center justify-center md:justify-start"
-            type="submit"
-            onClick={searchHandler}
+          <Tippy
+            content="Search"
+            theme="light"
+            className="!mb-2 hidden lg:block "
           >
-            <RiSearchLine
-              className="hover:brightness-110 transition-all w-[85%] md:w-10 h-10 p-[0.5rem] bg-secondaryColor text-white 
+            <div
+              className="flex items-center justify-center md:justify-start"
+              type="submit"
+              onClick={searchHandler}
+            >
+              <RiSearchLine
+                className="hover:brightness-110 transition-all w-[85%] md:w-10 h-10 p-[0.5rem] bg-secondaryColor text-white 
             rounded-tl-[10px] rounded-tr-[5px] rounded-br-[10px] rounded-bl-[5px] cursor-pointer"
-            />
-          </div>
+              />
+            </div>
+          </Tippy>
         </Form>
       </div>
     </Col>
   );
 };
-
-SearchBar.propTypes = {};
 
 export default SearchBar;

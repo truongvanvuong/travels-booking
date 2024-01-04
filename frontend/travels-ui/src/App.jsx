@@ -1,9 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "./App.css";
 import Layout from "./Layout";
-function App() {
+
+const App = () => {
   return <Layout />;
-}
+};
 
 export default App;

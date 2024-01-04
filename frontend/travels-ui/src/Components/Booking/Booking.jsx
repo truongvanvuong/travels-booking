@@ -8,30 +8,47 @@ import { Form, FormGroup, ListGroup, ListGroupItem } from "reactstrap";
 const Booking = ({ tour, avgRating }) => {
   const navigate = useNavigate();
   const { price, reviews } = tour;
-
+  const [fieldWarnings, setFieldWarnings] = useState({});
   const [credentials, setCredentials] = useState({
     userId: "",
     userEmail: "",
-    fullName: "",
-    phone: "",
+    userFullName: "",
+    userPhone: "",
     guestSize: "",
     bookAt: "",
   });
   const handleOnChange = (e) => {
-    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setCredentials((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+
+    setFieldWarnings((prev) => ({
+      ...prev,
+      [e.target.id]: false,
+    }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      credentials.fullName === "" ||
-      credentials.phone === "" ||
-      credentials.guestSize === "" ||
-      credentials.bookAt === ""
-    ) {
-      alert("nhap");
-    } else {
-      navigate("/thank-you");
+
+    const fields = Object.keys(credentials).filter(
+      (key) => credentials[key] === ""
+    );
+    if (fields.length > 0) {
+      const fieldWarnings = {};
+      fields.forEach((field) => {
+        fieldWarnings[field] = true;
+      });
+      setFieldWarnings(fieldWarnings);
+      return;
     }
+
+    // Tiếp tục với logic nộp biểu mẫu nếu tất cả các trường đều được điền
+    // ...
+
+    // Reset cảnh báo sau khi nộp thành công
+    setEmptyFieldWarnings({});
   };
 
   const serviceFee = 10;
@@ -65,10 +82,15 @@ const Booking = ({ tour, avgRating }) => {
               className="w-full p-2 rounded-lg text-headingColor text-[1rem] border-b border-solid !border-[rgb(299, 231, 235)] focus:outline-none"
               type="text"
               placeholder="Full Name"
-              id="fullName"
+              id="userFullName"
               required
               onChange={handleOnChange}
             />
+            {fieldWarnings.userFullName && (
+              <span className="text-[14px] px-2 my-2 block text-red-400">
+                Enter Full Name
+              </span>
+            )}
           </FormGroup>
           <FormGroup>
             <input
@@ -76,29 +98,50 @@ const Booking = ({ tour, avgRating }) => {
               type="number"
               placeholder="Phone"
               min="0"
-              id="phone"
+              id="userPhone"
               required
               onChange={handleOnChange}
             />
+            {fieldWarnings.userPhone && (
+              <span className="text-[14px] px-2 my-2 block text-red-400">
+                Phone Number
+              </span>
+            )}
           </FormGroup>
           <FormGroup className="grid grid-cols-1 xl:grid-cols-2 gap-3">
-            <input
-              className="w-full p-2 rounded-lg text-headingColor text-[1rem] border-b border-solid !border-[rgb(299, 231, 235)] focus:outline-none"
-              type="date"
-              placeholder=""
-              id="bookAt"
-              required
-              onChange={handleOnChange}
-            />
-            <input
-              className="w-full p-2 rounded-lg text-headingColor text-[1rem] border-b border-solid !border-[rgb(299, 231, 235)] focus:outline-none"
-              type="number"
-              min="0"
-              placeholder=""
-              id="guestSize"
-              required
-              onChange={handleOnChange}
-            />
+            <div>
+              <input
+                className="w-full p-2 rounded-lg text-headingColor text-[1rem] border-b border-solid !border-[rgb(299, 231, 235)] focus:outline-none"
+                type="date"
+                placeholder=""
+                id="bookAt"
+                required
+                onChange={handleOnChange}
+              />
+              {fieldWarnings.bookAt && (
+                <span className="text-[14px] px-2 my-2 block text-red-400">
+                  select date
+                </span>
+              )}
+            </div>
+
+            <div>
+              <input
+                className="w-full p-2 rounded-lg text-headingColor text-[1rem] border-b border-solid !border-[rgb(299, 231, 235)] focus:outline-none"
+                type="number"
+                min="0"
+                max="100"
+                placeholder="number of people"
+                id="guestSize"
+                required
+                onChange={handleOnChange}
+              />
+              {fieldWarnings.guestSize && (
+                <span className="text-[14px] px-2 my-2 block text-red-400">
+                  Number of People
+                </span>
+              )}
+            </div>
           </FormGroup>
         </Form>
       </div>
