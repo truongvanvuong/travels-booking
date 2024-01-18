@@ -2,7 +2,10 @@ import { Container, Row, Col } from "reactstrap";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import useScrollToTop from "../../hooks/useScrollToTop";
+
 const ThankYou = () => {
+  useScrollToTop();
   const { t } = useTranslation();
   return (
     <section>

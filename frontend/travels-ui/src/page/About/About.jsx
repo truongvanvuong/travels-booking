@@ -1,16 +1,14 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
+import useScrollToTop from "../../hooks/useScrollToTop";
 import img01 from "../../assets/images/bike-travellers-amico.svg";
 import img02 from "../../assets/images/Travelers-pana.svg";
 import heroVideo from "../../assets/images/hero-video.mp4";
 const About = () => {
+  useScrollToTop();
   const { t } = useTranslation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <div>
       <div className="relative">
@@ -25,7 +23,7 @@ const About = () => {
             <source src={heroVideo} type="video/mp4"></source>
           </video>
         </div>
-        <h1 className="absolute shadow-lg text-[3rem] text-center md:text-[3.6rem] font-medium text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <h1 className="absolute text-[3rem] text-center md:text-[3.6rem] font-medium text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {t("about")} Travel World
         </h1>
       </div>
@@ -51,7 +49,7 @@ const About = () => {
             </Col>
             <Col lg="8">
               <div>
-                <p className="text-[#000000E0] text-[0.85rem] md:text-[1.1rem] px-8">
+                <p className="text-[#000000E0] text-[0.9rem] md:text-[1.1rem] px-8">
                   {t("aboutDes1")}
                 </p>
               </div>
@@ -60,13 +58,13 @@ const About = () => {
           <Row className="my-8 flex items-center">
             <Col lg="8">
               <div>
-                <p className="text-[#000000E0] text-[0.85rem] md:text-[1.1rem] px-8">
+                <p className="text-[#000000E0] text-[0.9rem] md:text-[1.1rem] px-8">
                   {t("aboutDes2")}
                 </p>
-                <p className="text-[#000000E0] text-[0.85rem] md:text-[1.1rem] px-8 mt-4">
+                <p className="text-[#000000E0] text-[0.9rem] md:text-[1.1rem] px-8 mt-4">
                   {t("aboutDes3")}
                 </p>
-                <p className="text-[#000000E0] text-[0.85rem] md:text-[1.1rem] px-8 mt-4">
+                <p className="text-[#000000E0] text-[0.9rem] md:text-[1.1rem] px-8 mt-4">
                   {t("aboutDes4")}
                 </p>
               </div>

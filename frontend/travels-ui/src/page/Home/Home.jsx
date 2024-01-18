@@ -8,6 +8,7 @@ import heroVideo from "../../assets/images/hero-video.mp4";
 import wordImg from "../../assets/images/world.png";
 import experienceImg from "../../assets/images/experience.png";
 
+import useScrollToTop from "../../hooks/useScrollToTop";
 import { Subtitle, SearchBar } from "../../shared";
 import ServicesList from "../../services";
 import FeaturedList from "../../Components/Featured-tours";
@@ -16,11 +17,9 @@ import Testimonial from "../../Components/Testimonial";
 import Newsletter from "../../shared/Newsletter";
 
 const Home = () => {
+  useScrollToTop();
   const { t } = useTranslation();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <main>
       <section className="pt-[10px] lg:pt-[50px]">

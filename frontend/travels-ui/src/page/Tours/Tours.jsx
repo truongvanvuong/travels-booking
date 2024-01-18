@@ -2,16 +2,15 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Container, Row, Col } from "reactstrap";
 
+import useScrollToTop from "../../hooks/useScrollToTop";
 import { SearchBar, Newsletter, CommonSection } from "../../shared";
 import FeaturedList from "../../Components/Featured-tours/FeaturedList";
 const Tours = () => {
+  useScrollToTop();
   const { t } = useTranslation();
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   useEffect(() => {
     const pages = Math.ceil(5 / 4);
     setPageCount(pages);

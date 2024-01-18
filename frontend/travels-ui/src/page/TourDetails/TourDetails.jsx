@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col, Form, ListGroup } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
+import useScrollToTop from "../../hooks/useScrollToTop";
 import { AiFillStar } from "react-icons/ai";
 import {
   RiMapPinFill,
@@ -20,6 +21,8 @@ import { Newsletter } from "../../shared";
 import formatPrice from "../..//Utils/formattedPrice";
 
 const TourDetails = () => {
+  useScrollToTop();
+
   const { t } = useTranslation();
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);

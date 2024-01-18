@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
+import useScrollToTop from "../../hooks/useScrollToTop";
 import registerImg from "../../assets/images/register.png";
 import AuthForm from "../../Components/AuthForm";
 import Input from "../../Components/Input";
 const Register = () => {
+  useScrollToTop();
   const { t } = useTranslation();
 
   const [credentials, setCredentials] = useState({
@@ -52,8 +54,8 @@ const Register = () => {
                 <FormGroup>
                   <Input
                     type="password"
-                    placeholder="Password"
-                    id={t("password")}
+                    placeholder={t("password")}
+                    id="password"
                     onChange={handleChange}
                   />
                 </FormGroup>

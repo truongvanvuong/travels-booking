@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
+import useScrollToTop from "../../hooks/useScrollToTop";
 import AuthForm from "../../Components/AuthForm";
 import Input from "../../Components/Input";
 import loginImg from "../../assets/images/login.png";
 
 const Login = () => {
+  useScrollToTop();
   const { t } = useTranslation();
 
   const [credentials, setCredentials] = useState({

@@ -8,7 +8,7 @@ import {
   Tours,
   ThankYou,
   About,
-} from "../page";
+} from "../page/index";
 
 const Routers = () => {
   return (

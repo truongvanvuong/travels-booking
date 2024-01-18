@@ -36,13 +36,13 @@ ul {
   @apply px-6 py-[0.4rem] rounded-[50px] font-medium text-white border-none bg-secondaryColor;
 }
 .primary__btn a {
-  @apply text-[0.9rem] sm:text-[1.1rem] no-underline text-white;
+  @apply text-[1rem] sm:text-[1.1rem] no-underline text-white;
 }
 .secondary__btn {
   @apply text-[#0b2727] font-medium border-none bg-transparent;
 }
 .secondary__btn a {
-  @apply no-underline text-[0.9rem] sm:text-[1.1rem] text-headingColor;
+  @apply no-underline text-[1rem] sm:text-[1.1rem] text-headingColor;
 }
 .section__subtitle {
   @apply w-max font-medium text-[1.6rem] md:text-[2.2rem] text-headingColor px-3 py-0  rounded-[50px] bg-secondaryColor font-subtitleFontName;

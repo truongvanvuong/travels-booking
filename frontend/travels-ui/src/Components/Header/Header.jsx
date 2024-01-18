@@ -114,7 +114,7 @@ const Header = () => {
                 <ul className="menu mb-0 flex items-center justify-between gap-6">
                   {navLinks.map((nav, index) => {
                     return (
-                      <li key={index}>
+                      <li key={index} onClick={toggleMenu}>
                         <NavLink
                           to={nav.path}
                           className={(navClass) =>
