@@ -32,7 +32,8 @@ const BackTop = () => {
     <div
       ref={backTopRef}
       onClick={handleBackTop}
-      className={`z-[1000] flex fixed ${visible} ${botom} ${translate} right-4 md:right-7 w-12 h-12 bg-secondaryColor rounded-full items-center justify-center cursor-pointer hover:shadow-3xl hover:-translate-y-[6px] transition-transform ease-linear duration-300`}
+      className={`z-[1000] flex fixed ${visible} ${botom} ${translate} right-4 md:right-7 w-12 h-12 bg-secondaryColor rounded-full items-center
+      justify-center cursor-pointer hover:shadow-3xl hover:-translate-y-[6px] transition-transform ease-linear duration-300`}
     >
       <BsArrowUp className="h-6 w-6 text-white" />
     </div>

@@ -44,12 +44,11 @@ const TourDetails = () => {
   const { totalRating, avgRating } = caculateAvgRating(reviews);
   const options = { day: "numeric", month: "long", year: "numeric" };
 
-  const { formattedPrice, price, languageCode } = formatPrice(originalPrice);
+  const { formattedPrice, languageCode } = formatPrice(originalPrice);
 
   const HandleSubmit = (e) => {
     e.preventDefault();
     const reviewText = reviewMsgRef.current.value;
-    alert(`${reviewText} ${rating}`);
   };
   useEffect(() => {
     window.scrollTo(0, 0);

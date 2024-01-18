@@ -15,7 +15,6 @@ const Booking = ({
   t,
 }) => {
   const navigate = useNavigate();
-  const { reviews } = tour;
   const [fieldWarnings, setFieldWarnings] = useState({});
   const [credentials, setCredentials] = useState({
     userId: 1,
@@ -25,6 +24,9 @@ const Booking = ({
     guestSize: "",
     bookAt: "",
   });
+  const { reviews } = tour;
+  const serviceFee = 10;
+
   const handleOnChange = (e) => {
     setCredentials((prev) => ({
       ...prev,
@@ -54,8 +56,6 @@ const Booking = ({
       navigate("/thank-you");
     }
   };
-  const serviceFee = 10;
-
   const { formattedPrice: formattedPriceFee } = formatPrice(serviceFee);
   const totalAmount =
     Number(price) * Number(credentials.guestSize) + Number(serviceFee);
@@ -171,7 +171,9 @@ const Booking = ({
             </span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0 flex items-center justify-between">
-            <h5 className="text-[1.1rem] text-headingColor font-bold">Total</h5>
+            <h5 className="text-[1.1rem] text-headingColor font-bold">
+              {t("total")}
+            </h5>
             <span className="text-[1.1rem] text-headingColor font-bold">
               {formattedPricetotalAmount}
             </span>

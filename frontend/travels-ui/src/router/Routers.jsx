@@ -4,7 +4,6 @@ import {
   Home,
   Login,
   Register,
-  SearchResultList,
   TourDetails,
   Tours,
   ThankYou,
@@ -20,7 +19,6 @@ const Routers = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/tours" element={<Tours />} />
       <Route path="/tour/:id" element={<TourDetails />} />
-      <Route path="/tours/search" element={<SearchResultList />} />
       <Route path="/thank-you" element={<ThankYou />} />
       <Route path="/about" element={<About />} />
     </Routes>

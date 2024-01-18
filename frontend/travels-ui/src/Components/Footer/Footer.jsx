@@ -85,7 +85,7 @@ const Footer = () => {
             <div>
               <img src={logo} alt="Logo" className=" w-[45%] lg:w-[50%] mb-4" />
 
-              <div className="flex items-center gap-4 mt-4 mb-4 md:!mb-[0]">
+              <div className="flex items-center gap-4 mt-4 mb-4 lg:!mb-[0]">
                 {socialLinks.map((item, index) => {
                   return (
                     <span key={index}>
@@ -107,7 +107,7 @@ const Footer = () => {
           </Col>
           <Col lg="3" className="mb-3 md:!mb-0">
             <h5 className="text-headingColor mb-3 font-medium text-[1.3rem]">
-              {t("about")} Travel
+              {t("about")} Travel World
             </h5>
 
             <ListGroup>
@@ -170,7 +170,7 @@ const Footer = () => {
                   +84 1911061117
                 </Link>
               </ListGroupItem>
-              <ListGroupItem className="ps-0 flex items-center border-none">
+              <ListGroupItem className="ps-0 flex flex-wrap items-center border-none">
                 <BiMap className="w-5 h-5" />
                 <span className="mr-1 ml-2">{t("address")}:</span>
                 <span className="text-[16px] leading-7 font-[400] text-textColor">

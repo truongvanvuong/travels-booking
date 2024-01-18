@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";

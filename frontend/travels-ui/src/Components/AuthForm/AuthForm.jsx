@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import userIcon from "../../assets/images/user.png";
 
