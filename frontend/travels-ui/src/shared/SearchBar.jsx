@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Tippy from "@tippyjs/react";
+import { useTranslation } from "react-i18next";
+
 import { BiMap, BiGroup } from "react-icons/bi";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -8,6 +10,8 @@ import { Col, Form, FormGroup } from "reactstrap";
 import { RiMapPinTimeLine, RiSearchLine } from "react-icons/ri";
 
 const SearchBar = () => {
+  const { t } = useTranslation();
+
   const [searchValue, setSearchValue] = useState({
     location: "",
     distance: 0,
@@ -22,10 +26,13 @@ const SearchBar = () => {
       [e.target.name]: e.target.value,
     }));
     const { location, distance, maxGroupSize } = searchValue;
-
-    setVisibleLocation(location === "");
-    setVisibleDistance(distance === 0 || distance === "");
-    setVisiblePeople(maxGroupSize === 0 || maxGroupSize === "");
+    if (location !== "" && distance !== 0 && maxGroupSize !== 0) {
+      console.log(searchValue);
+    } else {
+      setVisibleLocation(location === "");
+      setVisibleDistance(distance === 0 || distance === "");
+      setVisiblePeople(maxGroupSize === 0 || maxGroupSize === "");
+    }
   };
   const handleBlur = (fieldName) => {
     const { location, distance, maxGroupSize } = searchValue;
@@ -53,7 +60,7 @@ const SearchBar = () => {
     if (visibleLocation || visibleDistance || visiblePeople) {
       const timer = setTimeout(() => {
         hideTippy();
-      }, 10000);
+      }, 8000);
 
       return () => clearTimeout(timer);
     }
@@ -67,12 +74,9 @@ const SearchBar = () => {
               <BiMap className="w-5 h-5" />
             </span>
             <div className="w-full lg:w-max">
-              <h6 className="mb-0">Location</h6>
+              <h6 className="mb-0">{t("location")}</h6>
               <Tippy
-                onHidden={() => {
-                  hideTippy();
-                }}
-                content="Enter where you want to go"
+                content={t("locationTooltip")}
                 visible={visibleLocation}
                 theme="light"
                 className="mb-[16px] lg:!mb-[40px]"
@@ -82,7 +86,7 @@ const SearchBar = () => {
                   onChange={searchHandler}
                   type="text"
                   name="location"
-                  placeholder="Where are you going?"
+                  placeholder={t("locationPlaceholder") + "?"}
                   className="text-sm text-headingColor border-none font-[500] focus:outline-none w-full"
                 />
               </Tippy>
@@ -94,12 +98,9 @@ const SearchBar = () => {
               <RiMapPinTimeLine className="w-5 h-5" />
             </span>
             <div className="w-full lg:w-max">
-              <h6 className="mb-0">Distance</h6>
+              <h6 className="mb-0">{t("distance")}</h6>
               <Tippy
-                onHidden={() => {
-                  hideTippy();
-                }}
-                content="Enter distance"
+                content={t("distanceTooltip")}
                 visible={visibleDistance}
                 theme="light"
                 className="mb-[16px] lg:!mb-[40px]"
@@ -110,7 +111,7 @@ const SearchBar = () => {
                   type="number"
                   name="distance"
                   min="0"
-                  placeholder="Distance km"
+                  placeholder={t("distancePlaceholder") + " km"}
                   className="text-sm text-headingColor border-none font-[500] border-r-2 focus:outline-none w-full"
                 />
               </Tippy>
@@ -121,17 +122,14 @@ const SearchBar = () => {
               <BiGroup className="w-5 h-5" />
             </span>
             <div className="w-full lg:w-max">
-              <h6 className="mb-0">Max People</h6>
+              <h6 className="mb-0">{t("maxPeople")}</h6>
               <Tippy
-                content="Enter max people"
+                content={t("maxPeopleTooltip")}
                 visible={visiblePeople}
                 theme="light"
                 className="mb-[16px] lg:!mb-[40px]"
               >
                 <input
-                  onHidden={() => {
-                    hideTippy();
-                  }}
                   onBlur={() => handleBlur("maxGroupSize")}
                   onChange={searchHandler}
                   min="0"
@@ -144,7 +142,7 @@ const SearchBar = () => {
             </div>
           </FormGroup>
           <Tippy
-            content="Search"
+            content={t("btnSearch")}
             theme="light"
             className="!mb-2 hidden lg:block "
           >

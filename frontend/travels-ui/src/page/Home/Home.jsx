@@ -1,5 +1,7 @@
 import { Container, Row, Col } from "reactstrap";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
 import heroImg1 from "../../assets/images/hero-img01.jpg";
 import heroImg2 from "../../assets/images/hero-img02.jpg";
 import heroVideo from "../../assets/images/hero-video.mp4";
@@ -14,6 +16,8 @@ import Testimonial from "../../Components/Testimonial";
 import Newsletter from "../../shared/Newsletter";
 
 const Home = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -25,22 +29,19 @@ const Home = () => {
             <Col lg="6">
               <div className="!pt-4 lg:pt-12">
                 <div className="flex items-center">
-                  <Subtitle subtitle={"Know Before You Go"} />
+                  <Subtitle subtitle={t("titleBanner1")} />
                   <img
                     src={wordImg}
                     alt="Word"
                     className="h-[2.3rem] w-[2.3rem]"
                   />
                 </div>
-                <h1 className="text-[2.4rem] md:text-[3.2rem] font-medium mt-4 mb-6 md:mb-8 text-headingColor">
-                  Traveling opens the door to creating{" "}
-                  <span className="text-secondaryColor">memories</span>
+                <h1 className="text-[2.4rem] md:text-[3rem] font-medium mt-4 mb-6 md:mb-8 text-headingColor">
+                  {t("title1")}{" "}
+                  <span className="text-secondaryColor">{t("highlight")}</span>
                 </h1>
                 <p className="text-[0.9rem] md:text-[1.1rem] text-textColor leading-8">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Officia obcaecati fugiat consequatur? Vero ipsa doloremque,
-                  nisi nostrum tempora quisquam quam amet suscipit iste sunt
-                  distinctio voluptatem minus expedita eveniet dolore?
+                  {t("description1")}
                 </p>
               </div>
             </Col>
@@ -85,10 +86,10 @@ const Home = () => {
           <Row>
             <Col lg="3">
               <h5 className="font-subtitleFontName font-[500] text-[2rem] md:text-[2.5rem] text-[#ee6e6e]">
-                What we serve
+                {t("titleBanner2")}
               </h5>
               <h2 className="mb-4 lg:!mb-0 text-[2rem] md:text-[2.5rem] font-medium">
-                We offer our best services
+                {t("title2")}
               </h2>
             </Col>
             <ServicesList />
@@ -100,9 +101,9 @@ const Home = () => {
         <Container>
           <Row>
             <Col lg="12" className="mb-5">
-              <Subtitle subtitle={"Explore"} />
-              <h2 className="text-[2rem] md:text-[2.3rem] font-[500]">
-                Our featured tours
+              <Subtitle subtitle={t("titleBanner3")} />
+              <h2 className="text-[2rem] md:text-[2.3rem] font-[500] mt-4">
+                {t("title3")}
               </h2>
             </Col>
             <FeaturedList />
@@ -117,15 +118,12 @@ const Home = () => {
           <Row>
             <Col lg="6">
               <div className="experience__content">
-                <Subtitle subtitle={"Experience"} />
+                <Subtitle subtitle={t("titleBanner4")} />
                 <h2 className="text-[2rem] md:text-[2.5rem] mt-4 font-medium">
-                  With our all experience <br />
-                  we will serve you
+                  {t("title4")}
                 </h2>
                 <p className="text-[1.1rem] text-textColor mt-4">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  <br />
-                  Quas aliquam, hic tempora inventore suscipit unde.
+                  {t("description2")}
                 </p>
               </div>
               <div className="counter__wrapper flex items-center justify-center lg:justify-start gap-5 mt-8">
@@ -137,7 +135,7 @@ const Home = () => {
                     12k+
                   </span>
                   <h6 className="text-center font-medium text-[0.9rem] lg:text-[1.1rem] mt-[0.7rem] text-textColor">
-                    Successful Trip
+                    {t("successfulTrip")}
                   </h6>
                 </div>
                 <div className="content__box">
@@ -148,7 +146,7 @@ const Home = () => {
                     2k+
                   </span>
                   <h6 className="text-center font-medium text-[0.9rem] lg:text-[1.1rem] mt-[0.7rem] text-textColor">
-                    Regular clients
+                    {t("regularClients")}
                   </h6>
                 </div>
                 <div className="content__box">
@@ -159,7 +157,7 @@ const Home = () => {
                     15
                   </span>
                   <h6 className="text-center font-medium text-[0.9rem] lg:text-[1.1rem] mt-[0.7rem] text-textColor">
-                    Years experience
+                    {t("yearsExperience")}
                   </h6>
                 </div>
               </div>
@@ -183,9 +181,9 @@ const Home = () => {
         <Container>
           <Row>
             <Col lg="12">
-              <Subtitle subtitle={"Gallery"} />
+              <Subtitle subtitle={t("titleBanner5")} />
               <h2 className="gallery__title text-[2rem] md:text-[2.3rem] font-medium mb-[2.5rem] mt-4">
-                Visit our customers tour gallery
+                {t("title5")}
               </h2>
             </Col>
             <Col lg="12">
@@ -201,9 +199,9 @@ const Home = () => {
         <Container>
           <Row>
             <Col lg="12">
-              <Subtitle subtitle={"Fans Love"} />
+              <Subtitle subtitle={t("titleBanner6")} />
               <h2 className="text-[2rem] md:text-[2.3rem] mt-4 font-medium">
-                What our fans say about us
+                {t("title6")}
               </h2>
             </Col>
             <Col lg="12">

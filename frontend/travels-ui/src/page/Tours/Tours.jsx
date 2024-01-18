@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-
+import { useTranslation } from "react-i18next";
 import { Container, Row, Col } from "reactstrap";
 
 import { SearchBar, Newsletter, CommonSection } from "../../shared";
 import FeaturedList from "../../Components/Featured-tours/FeaturedList";
 const Tours = () => {
+  const { t } = useTranslation();
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
 
@@ -17,7 +18,7 @@ const Tours = () => {
   }, [page]);
   return (
     <div>
-      <CommonSection title={"All Tours"} />
+      <CommonSection title={t("allTours")} />
       <section>
         <Container>
           <Row>

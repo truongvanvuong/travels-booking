@@ -10,7 +10,7 @@ const AuthForm = ({ children, img, title, linkTo, linktext, paraText }) => {
       <div className="login__img md:w-[50%] lg:w-[60%] text-center hidden md:flex items-center justify-center">
         <img className="w-[80%] object-cover" src={img} alt="Image Login" />
       </div>
-      <div className="login__form px-8 py-10 lg:px-12 lg:py-12 bg-secondaryColor relative w-full md:rounded-r-xl md:rounded-l-none rounded-xl md:w-[50%] lg:w-[40%]">
+      <div className="login__form px-8 py-10 lg:px-10 lg:py-12 bg-secondaryColor relative w-full md:rounded-r-xl md:rounded-l-none rounded-xl md:w-[50%] lg:w-[40%]">
         <div className="user w-[80px] h-[80px] absolute -top-[9%] left-[50%] -translate-x-2/4 translate-y-[-9%]">
           <img
             className="w-full shadow rounded-full"
@@ -23,7 +23,7 @@ const AuthForm = ({ children, img, title, linkTo, linktext, paraText }) => {
         </h2>
         {children}
         <p className="text-[1rem] text-white mt-6 text-center">
-          {paraText} have an account?
+          {paraText}?
           <Link
             className="text-[#000000E0] no-underline ml-[5px] font-medium hover:underline capitalize"
             to={`/${linkTo}`}

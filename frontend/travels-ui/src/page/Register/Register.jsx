@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import registerImg from "../../assets/images/register.png";
 import AuthForm from "../../Components/AuthForm";
 import Input from "../../Components/Input";
 const Register = () => {
+  const { t } = useTranslation();
+
   const [credentials, setCredentials] = useState({
     userName: undefined,
     email: undefined,
@@ -25,16 +28,16 @@ const Register = () => {
           <Col lg="10" className="m-auto">
             <AuthForm
               img={registerImg}
-              title="register"
+              title={t("register")}
               linkTo="login"
-              linktext="login"
-              paraText="Already"
+              linktext={t("login")}
+              paraText={t("alreadyHaveAnAccount")}
             >
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <Input
                     type="text"
-                    placeholder="User Name"
+                    placeholder={t("userName")}
                     id="name"
                     onChange={handleChange}
                   />
@@ -51,7 +54,7 @@ const Register = () => {
                   <Input
                     type="password"
                     placeholder="Password"
-                    id="password"
+                    id={t("password")}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -59,7 +62,7 @@ const Register = () => {
                   className="w-full bg-headingColor text-white rounded-md py-2 hover:opacity-90 transition-all"
                   type="submit"
                 >
-                  Register
+                  {t("register")}
                 </button>
               </Form>
             </AuthForm>

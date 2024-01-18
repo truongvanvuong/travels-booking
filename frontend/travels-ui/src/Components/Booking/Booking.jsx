@@ -5,13 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { AiFillStar, AiOutlineClose } from "react-icons/ai";
 import { Form, FormGroup, ListGroup, ListGroupItem } from "reactstrap";
 
-const Booking = ({ tour, avgRating }) => {
+const Booking = ({
+  tour,
+  avgRating,
+  price,
+  prePerson,
+  formattedPrice,
+  formatPrice,
+  t,
+}) => {
   const navigate = useNavigate();
-  const { price, reviews } = tour;
+  const { reviews } = tour;
   const [fieldWarnings, setFieldWarnings] = useState({});
   const [credentials, setCredentials] = useState({
-    userId: "",
-    userEmail: "",
+    userId: 1,
+    userEmail: "test@example.com",
     userFullName: "",
     userPhone: "",
     guestSize: "",
@@ -32,35 +40,34 @@ const Booking = ({ tour, avgRating }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const fields = Object.keys(credentials).filter(
-      (key) => credentials[key] === ""
-    );
-    if (fields.length > 0) {
+    const isEmpty = Object.values(credentials).some((value) => value === "");
+    if (isEmpty) {
       const fieldWarnings = {};
-      fields.forEach((field) => {
-        fieldWarnings[field] = true;
+      Object.keys(credentials).forEach((field) => {
+        if (credentials[field] === "") {
+          fieldWarnings[field] = true;
+        }
       });
       setFieldWarnings(fieldWarnings);
-      return;
+    } else {
+      setFieldWarnings({});
+      navigate("/thank-you");
     }
-
-    // Tiếp tục với logic nộp biểu mẫu nếu tất cả các trường đều được điền
-    // ...
-
-    // Reset cảnh báo sau khi nộp thành công
-    setEmptyFieldWarnings({});
   };
-
   const serviceFee = 10;
+
+  const { formattedPrice: formattedPriceFee } = formatPrice(serviceFee);
   const totalAmount =
     Number(price) * Number(credentials.guestSize) + Number(serviceFee);
+  const { formattedPrice: formattedPricetotalAmount, price: pricetotalAmount } =
+    formatPrice(totalAmount);
   return (
     <div className="booking p-8 rounded-lg border border-solid !border-[rgb(299, 231, 235)] sticky top-[130px] mt-4 md:!mt-0">
       <div className="flex items-center justify-between !border-b border-solid !border-[rgb(299, 231, 235)] pb-8 ">
-        <h3 className="text-[2rem] font-semibold">
-          ${price}
-          <span className="text-[1.1rem] font-normal text-textColor">
-            /pre person
+        <h3 className="text-[1.4rem] font-semibold">
+          {formattedPrice}
+          <span className="text-[0.9rem] font-normal text-textColor">
+            /{prePerson}
           </span>
         </h3>
         <span className="flex items-center gap-x-2 text-[1rem] text-textColor">
@@ -72,7 +79,7 @@ const Booking = ({ tour, avgRating }) => {
         </span>
       </div>
       <div className="booking__form pt-8">
-        <h5 className="mb-4 font-semibold">Imformation</h5>
+        <h5 className="mb-4 font-semibold">{t("imformation")}</h5>
         <Form
           onSubmit={handleSubmit}
           className="booking__info p-4 border border-solid !border-[rgb(299, 231, 235)] rounded-md"
@@ -81,14 +88,14 @@ const Booking = ({ tour, avgRating }) => {
             <input
               className="w-full p-2 rounded-lg text-headingColor text-[1rem] border-b border-solid !border-[rgb(299, 231, 235)] focus:outline-none"
               type="text"
-              placeholder="Full Name"
+              placeholder={t("fullName")}
               id="userFullName"
               required
               onChange={handleOnChange}
             />
             {fieldWarnings.userFullName && (
               <span className="text-[14px] px-2 my-2 block text-red-400">
-                Enter Full Name
+                {t("enter")} {t("fullName")}
               </span>
             )}
           </FormGroup>
@@ -96,7 +103,7 @@ const Booking = ({ tour, avgRating }) => {
             <input
               className="w-full p-2 rounded-lg text-headingColor text-[1rem] border-b border-solid !border-[rgb(299, 231, 235)] focus:outline-none"
               type="number"
-              placeholder="Phone"
+              placeholder={t("phone")}
               min="0"
               id="userPhone"
               required
@@ -104,7 +111,7 @@ const Booking = ({ tour, avgRating }) => {
             />
             {fieldWarnings.userPhone && (
               <span className="text-[14px] px-2 my-2 block text-red-400">
-                Phone Number
+                {t("enter")} {t("phone")}
               </span>
             )}
           </FormGroup>
@@ -120,7 +127,7 @@ const Booking = ({ tour, avgRating }) => {
               />
               {fieldWarnings.bookAt && (
                 <span className="text-[14px] px-2 my-2 block text-red-400">
-                  select date
+                  {t("selectDate")}
                 </span>
               )}
             </div>
@@ -131,14 +138,14 @@ const Booking = ({ tour, avgRating }) => {
                 type="number"
                 min="0"
                 max="100"
-                placeholder="number of people"
+                placeholder={t("numberOfPeople")}
                 id="guestSize"
                 required
                 onChange={handleOnChange}
               />
               {fieldWarnings.guestSize && (
                 <span className="text-[14px] px-2 my-2 block text-red-400">
-                  Number of People
+                  {t("numberOfPeople")}
                 </span>
               )}
             </div>
@@ -147,34 +154,34 @@ const Booking = ({ tour, avgRating }) => {
       </div>
       <div className="booking__bottom mt-4">
         <ListGroup>
-          <ListGroupItem className="border-0 px-0 flex items-center justify-between">
-            <h5 className="flex items-center gap-1 text-[1rem] text-textColor font-medium">
-              ${price} <AiOutlineClose /> 1 person
+          <ListGroupItem className="border-0 px-0 flex flex-wrap items-center justify-between">
+            <h5 className="flex items-center gap-1 text-[0.9rem] sm:text-[1rem] text-textColor font-medium">
+              {formattedPrice} <AiOutlineClose /> {prePerson}
             </h5>
             <span className="text-[1rem] text-textColor font-medium">
-              {price}
+              {formattedPrice}
             </span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0 flex items-center justify-between">
             <h5 className="text-[1rem] text-textColor font-medium">
-              Service charge
+              {t("serviceCharge")}
             </h5>
             <span className="text-[1rem] text-textColor font-medium">
-              ${serviceFee}
+              {formattedPriceFee}
             </span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0 flex items-center justify-between">
             <h5 className="text-[1.1rem] text-headingColor font-bold">Total</h5>
             <span className="text-[1.1rem] text-headingColor font-bold">
-              ${totalAmount}
+              {formattedPricetotalAmount}
             </span>
           </ListGroupItem>
         </ListGroup>
         <button
           onClick={handleSubmit}
-          className="btn__customer primary__btn w-full mt-4"
+          className="btn__customer primary__btn mt-4 !w-full"
         >
-          Book Now
+          {t("bookNow")}
         </button>
       </div>
     </div>
@@ -184,6 +191,11 @@ const Booking = ({ tour, avgRating }) => {
 Booking.propTypes = {
   tour: PropTypes.object.isRequired,
   avgRating: PropTypes.string,
+  price: PropTypes.number.isRequired,
+  formattedPrice: PropTypes.string,
+  prePerson: PropTypes.string,
+  formatPrice: PropTypes.func,
+  t: PropTypes.func,
 };
 
 export default Booking;

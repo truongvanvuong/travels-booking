@@ -13,9 +13,9 @@ const tours = [
     city: "London",
     address: "Somewhere",
     distance: 300,
-    price: 99,
+    price: 90,
     maxGroupSize: 10,
-    desc: "this is the description",
+    desc: "This is the description",
     reviews: [
       {
         name: "jhon doe",
@@ -32,9 +32,9 @@ const tours = [
     city: "Indonesia",
     address: "Somewhere",
     distance: 400,
-    price: 99,
+    price: 95,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "This is the description",
     reviews: [
       {
         name: "jhon doe",
@@ -51,9 +51,9 @@ const tours = [
     city: "Thailand",
     address: "Somewhere",
     distance: 500,
-    price: 99,
+    price: 89,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "This is the description",
     reviews: [
       {
         name: "jhon doe",
@@ -72,7 +72,7 @@ const tours = [
     distance: 500,
     price: 99,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "This is the description",
     reviews: [
       {
         name: "jhon doe",
@@ -89,9 +89,9 @@ const tours = [
     city: "Indonesia",
     address: "Somewhere",
     distance: 500,
-    price: 99,
+    price: 97,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "This is the description",
     reviews: [
       {
         name: "jhon doe",
@@ -108,9 +108,9 @@ const tours = [
     city: "Japan",
     address: "Somewhere",
     distance: 500,
-    price: 99,
+    price: 96,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "This is the description",
     reviews: [],
     avgRating: 4.5,
     photo: tourImg06,
@@ -122,14 +122,10 @@ const tours = [
     city: "France",
     address: "Somewhere",
     distance: 500,
-    price: 99,
+    price: 91,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "This is the description",
     reviews: [
-      {
-        name: "jhon doe",
-        rating: 4.6,
-      },
       {
         name: "jhon doe",
         rating: 4.6,
@@ -145,9 +141,9 @@ const tours = [
     city: "Thailand",
     address: "Somewhere",
     distance: 500,
-    price: 99,
+    price: 94,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "This is the description",
     reviews: [],
     avgRating: 4.5,
     photo: tourImg03,
